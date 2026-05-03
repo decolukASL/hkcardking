@@ -47,6 +47,8 @@ CREATE TABLE sys_lang
 CREATE TABLE eNews
 (
   ns_id NVARCHAR(20) NOT NULL PRIMARY KEY,
+  ns_content NVARCARH(MAX) NOT NULL,
+  ns_date  DATETIME NOT NULL DEFAULT GETDATE()
 )
 
 
@@ -89,6 +91,8 @@ CREATE TABLE ePostCardValidation
   pcv_date     DATETIME NOT NULL DEFAULT GETDATE(0),
   pcv_level    INT,
   pcv_org      NVARCHAR(100) NOT NULL,
+  pcv_image1_path     NVARCHAR(100) NOT NULL,
+  pcv_image2_path     NVARCHAR(100) NOT NULL,
   pcv_approve_date DATETIME,
   su_id       NVARCHAR(20) 
 

@@ -1,0 +1,126 @@
+HK CARD KING
+------------------------------------------
+//accumulate by sn_key   like  "mSysUser"
+// SU000000000001
+// US000000000001 + 1
+//@KEY_NAME = 'mSysUser'
+//UPDATE sys_seq_no SET sn_seq_no = sn_seq_no + 1, @rtn_value = sn_seq_no + 1 WHERE su_id = @KEY_NAME
+CREATE TABLE sys_seq_no
+(
+    sn_key  NVARCHAR(20) PRIMARY KEY,
+    sn_seq_no INT NOT NULL DEFAULT 0
+)
+
+
+
+CREATE TABLE mSysUser
+(
+  su_id       NVARCHAR(20) NOT NULL PRIMARY KEY,
+  su_name     NVARCHAR(500),
+  su_login    NVARCHAR(500),
+  su_password NVARCHAR(500),
+  su_date     DATETIME,
+  su_token    NVARCHAR(500)
+)
+
+
+CREATE TABLE mUser
+(
+  us_id       NVARCHAR(20) NOT NULL PRIMARY KEY,
+  us_name     NVARCHAR(500),
+  us_login    NVARCHAR(500),
+  us_password NVARCHAR(500),
+  us_date     DATETIME,
+  us_email    NVARCHAR(200),
+  us_addresss NVARCHAR(300),
+  us_token    NVARCHAR(500)
+)
+
+CREATE TABLE sys_lang
+(
+   lg_id   INT NOT NULL IDENTITY(1,1),
+   lg_lang NVARCHAR(100) NOT NULL,
+   lg_key  NVARCHAR(100) NOT NULL,
+   lg_value NVARCHAR(300) NOT NULL
+)
+
+CREATE TABLE eNews
+(
+  ns_id NVARCHAR(20) NOT NULL PRIMARY KEY,
+)
+
+
+
+CREATE TABLE ePostCard
+(
+  pc_id       NVARCHAR(20) NOT NULL PRIMARY KEY
+  pc_number    NVARCHAR(100) NOT NULL, 
+  pc_name     NVARCHAR(100) NOT NULL,
+  pc_desc     NVARCHAR(300) NOT NULL,
+  pc_name_key   NVARCHAR(100) NOT NULL,
+  pc_price      NUMERIC(20,4) NOT NULL DEFAULT 0,
+  pc_date     DATETIME NOT NULL DEFAULT GETDATE(0),
+  pc_level    INT,
+  pc_org      NVARCHAR(100) NOT NULL
+)
+
+CREATE TABLE ePostCardName
+(
+  pc_name_id    NVARCHAR(20) NOT NULL PRIMARY KEY,
+  pc_name_key   NVARCHAR(100) NOT NULL, 
+  pc_name_lang  NVARCHAR(20) NOT NULL 
+)
+
+CREATE TABLE ePostCardImg
+(
+  pci_id    NVARCHAR(20) NOT NULL PRIMARY KEY, 
+  pc_id     NVARCHAR(20) NOT NULL ,
+  pci_path  NVARCHAR(100) NOT NULL 
+)
+
+CREATE TABLE ePostCardValidation
+(
+  pcv_id      NVARCHAR(20) NOT NULL PRIMARY KEY,
+  pcv_number    NVARCHAR(100) NOT NULL, 
+  pcv_name     NVARCHAR(100) NOT NULL,
+  pcv_desc     NVARCHAR(300) NOT NULL,
+  pcv_name_key   NVARCHAR(100) NOT NULL,
+  pcv_price      NUMERIC(20,4) NOT NULL DEFAULT 0,
+  pcv_date     DATETIME NOT NULL DEFAULT GETDATE(0),
+  pcv_level    INT,
+  pcv_org      NVARCHAR(100) NOT NULL,
+  pcv_approve_date DATETIME,
+  su_id       NVARCHAR(20) 
+
+ )
+
+
+CREATE TABLE eCardStatistics
+(
+  cs_id       NVARCHAR(20) NOT NULL PRIMARY KEY,
+  pc_name_key   NVARCHAR(100) NOT NULL,
+  cs_YYYYMMDD   NVARCHAR(10) NOT NULL,
+  cs_price_low  NUMERIC(20,4) NOT NULL DEFAULT 0,
+  cs_price_high NUMERIC(20,4) NOT NULL DEFAULT 0,
+  cs_date       DATETIME
+)
+
+
+CREATE TALBE mCardType
+(
+  ct_id         NVARCHAR(20) NOT NULL PRIMARY KEY,
+  ct_name       NVARCHAR(20) NOT NULL,
+  ct_name_en    NVARCHAR(20) NOT NULL,
+  ct_name_jp    NVARCHAR(20) NOT NULL
+)
+
+
+
+
+
+
+
+
+
+
+
